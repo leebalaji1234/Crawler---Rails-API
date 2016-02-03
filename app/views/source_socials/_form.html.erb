@@ -1,0 +1,77 @@
+<%= form_for(@source_social) do |f| %>
+  <% if @source_social.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@source_social.errors.count, "error") %> prohibited this source_social from being saved:</h2>
+
+      <ul>
+      <% @source_social.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :collection_name %><br>
+    <%= f.text_field :collection_name %>
+  </div>
+  <div class="field">
+    <%= f.label :fb_like_page_id %><br>
+    <%= f.text_field :fb_like_page_id %>
+  </div>
+  <div class="field">
+    <%= f.label :access_token %><br>
+    <%= f.text_field :access_token %>
+  </div>
+  <div class="field">
+    <%= f.label :fb_feed_limit %><br>
+    <%= f.number_field :fb_feed_limit %>
+  </div>
+  <div class="field">
+    <%= f.label :consumer_key %><br>
+    <%= f.text_field :consumer_key %>
+  </div>
+  <div class="field">
+    <%= f.label :consumer_secret %><br>
+    <%= f.text_field :consumer_secret %>
+  </div>
+  <div class="field">
+    <%= f.label :access_secret %><br>
+    <%= f.text_field :access_secret %>
+  </div>
+  <div class="field">
+    <%= f.label :geo_lat %><br>
+    <%= f.text_field :geo_lat %>
+  </div>
+  <div class="field">
+    <%= f.label :geo_lon %><br>
+    <%= f.text_field :geo_lon %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter_hastags %><br>
+    <%= f.text_field :twitter_hastags %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram_start_time %><br>
+    <%= f.number_field :instagram_start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram_end_time %><br>
+    <%= f.number_field :instagram_end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram_tags %><br>
+    <%= f.text_field :instagram_tags %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :channel_id %><br>
+    <%= f.text_field :channel_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

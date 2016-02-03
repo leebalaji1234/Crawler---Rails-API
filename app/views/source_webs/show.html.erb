@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url collection name:</strong>
+  <%= @source_web.url_collection_name %>
+</p>
+
+<p>
+  <strong>Url collection:</strong>
+  <%= @source_web.url_collection %>
+</p>
+
+<p>
+  <strong>Scheduler type:</strong>
+  <%= @source_web.scheduler_type %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @source_web.project %>
+</p>
+
+<%= link_to 'Edit', edit_source_web_path(@source_web) %> |
+<%= link_to 'Back', source_webs_path %>

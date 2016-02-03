@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Scheduler Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scheduler name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scheduler_types.each do |scheduler_type| %>
+      <tr>
+        <td><%= scheduler_type.scheduler_name %></td>
+        <td><%= link_to 'Show', scheduler_type %></td>
+        <td><%= link_to 'Edit', edit_scheduler_type_path(scheduler_type) %></td>
+        <td><%= link_to 'Destroy', scheduler_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scheduler type', new_scheduler_type_path %>

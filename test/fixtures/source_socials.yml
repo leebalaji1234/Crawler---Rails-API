@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  collection_name: MyString
+  fb_like_page_id: MyString
+  access_token: MyString
+  fb_feed_limit: 1
+  consumer_key: MyString
+  consumer_secret: MyString
+  access_secret: MyString
+  geo_lat: MyString
+  geo_lon: MyString
+  twitter_hastags: MyString
+  instagram_start_time: 1
+  instagram_end_time: 1
+  instagram_tags: MyString
+  project_id: 
+  channel_id: 
+
+two:
+  collection_name: MyString
+  fb_like_page_id: MyString
+  access_token: MyString
+  fb_feed_limit: 1
+  consumer_key: MyString
+  consumer_secret: MyString
+  access_secret: MyString
+  geo_lat: MyString
+  geo_lon: MyString
+  twitter_hastags: MyString
+  instagram_start_time: 1
+  instagram_end_time: 1
+  instagram_tags: MyString
+  project_id: 
+  channel_id: 

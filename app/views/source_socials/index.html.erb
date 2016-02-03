@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Source Socials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Collection name</th>
+      <th>Fb like page</th>
+      <th>Access token</th>
+      <th>Fb feed limit</th>
+      <th>Consumer key</th>
+      <th>Consumer secret</th>
+      <th>Access secret</th>
+      <th>Geo lat</th>
+      <th>Geo lon</th>
+      <th>Twitter hastags</th>
+      <th>Instagram start time</th>
+      <th>Instagram end time</th>
+      <th>Instagram tags</th>
+      <th>Project</th>
+      <th>Channel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @source_socials.each do |source_social| %>
+      <tr>
+        <td><%= source_social.collection_name %></td>
+        <td><%= source_social.fb_like_page_id %></td>
+        <td><%= source_social.access_token %></td>
+        <td><%= source_social.fb_feed_limit %></td>
+        <td><%= source_social.consumer_key %></td>
+        <td><%= source_social.consumer_secret %></td>
+        <td><%= source_social.access_secret %></td>
+        <td><%= source_social.geo_lat %></td>
+        <td><%= source_social.geo_lon %></td>
+        <td><%= source_social.twitter_hastags %></td>
+        <td><%= source_social.instagram_start_time %></td>
+        <td><%= source_social.instagram_end_time %></td>
+        <td><%= source_social.instagram_tags %></td>
+        <td><%= source_social.project %></td>
+        <td><%= source_social.channel %></td>
+        <td><%= link_to 'Show', source_social %></td>
+        <td><%= link_to 'Edit', edit_source_social_path(source_social) %></td>
+        <td><%= link_to 'Destroy', source_social, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Source social', new_source_social_path(@source_socials,@channel) %>
