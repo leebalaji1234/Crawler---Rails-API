@@ -1,4 +1,4 @@
-class SourceSocialsController < ApplicationController
+class SourceSocialsController < Api::V1::BaseController
   before_action :set_source_social, only: [:show, :edit, :update, :destroy]
 
   # GET /source_socials
