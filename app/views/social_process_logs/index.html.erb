@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Social Process Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>User</th>
+      <th>Source social</th>
+      <th>Process status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @social_process_logs.each do |social_process_log| %>
+      <tr>
+        <td><%= social_process_log.project %></td>
+        <td><%= social_process_log.user %></td>
+        <td><%= social_process_log.source_social %></td>
+        <td><%= social_process_log.process_status %></td>
+        <td><%= link_to 'Show', social_process_log %></td>
+        <td><%= link_to 'Edit', edit_social_process_log_path(social_process_log) %></td>
+        <td><%= link_to 'Destroy', social_process_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Social process log', new_social_process_log_path %>

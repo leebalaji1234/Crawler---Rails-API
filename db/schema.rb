@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129132326) do
+ActiveRecord::Schema.define(version: 20160215051158) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "channel_name", limit: 255
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 20160129132326) do
     t.string   "description",  limit: 1000
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "process_statuses", force: :cascade do |t|
+    t.string   "process_status", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -41,6 +47,20 @@ ActiveRecord::Schema.define(version: 20160129132326) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "social_process_logs", force: :cascade do |t|
+    t.integer  "project_id",        limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "source_social_id",  limit: 4
+    t.integer  "process_status_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "social_process_logs", ["process_status_id"], name: "index_social_process_logs_on_process_status_id", using: :btree
+  add_index "social_process_logs", ["project_id"], name: "index_social_process_logs_on_project_id", using: :btree
+  add_index "social_process_logs", ["source_social_id"], name: "index_social_process_logs_on_source_social_id", using: :btree
+  add_index "social_process_logs", ["user_id"], name: "index_social_process_logs_on_user_id", using: :btree
 
   create_table "source_socials", force: :cascade do |t|
     t.string   "collection_name",      limit: 45
@@ -92,6 +112,10 @@ ActiveRecord::Schema.define(version: 20160129132326) do
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
 
   add_foreign_key "projects", "users"
+  add_foreign_key "social_process_logs", "process_statuses"
+  add_foreign_key "social_process_logs", "projects"
+  add_foreign_key "social_process_logs", "source_socials"
+  add_foreign_key "social_process_logs", "users"
   add_foreign_key "source_socials", "channels"
   add_foreign_key "source_socials", "projects"
   add_foreign_key "source_webs", "projects"

@@ -4,7 +4,7 @@ class SourceWebsController < Api::V1::BaseController
   # GET /source_webs
   # GET /source_webs.json
   def index 
-    @source_webs = SourceWeb.all 
+    @source_webs = SourceWeb.websources(params[:project_id]) 
   end
 
   # GET /source_webs/1

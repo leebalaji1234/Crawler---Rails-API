@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Process status:</strong>
+  <%= @process_status.process_status %>
+</p>
+
+<%= link_to 'Edit', edit_process_status_path(@process_status) %> |
+<%= link_to 'Back', process_statuses_path %>

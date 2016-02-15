@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @social_process_log.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @social_process_log.user %>
+</p>
+
+<p>
+  <strong>Source social:</strong>
+  <%= @social_process_log.source_social %>
+</p>
+
+<p>
+  <strong>Process status:</strong>
+  <%= @social_process_log.process_status %>
+</p>
+
+<%= link_to 'Edit', edit_social_process_log_path(@social_process_log) %> |
+<%= link_to 'Back', social_process_logs_path %>

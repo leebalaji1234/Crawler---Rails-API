@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :social_process_logs
+  resources :process_statuses
   resources :source_socials
   resources :source_webs
   resources :scheduler_types
@@ -17,6 +19,9 @@ Rails.application.routes.draw do
    resources :channels do
     resources :source_socials
    end
+  end
+  resources :projects do 
+    resources :source_webs 
   end
 
 

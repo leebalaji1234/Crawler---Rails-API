@@ -1,0 +1,33 @@
+<%= form_for(@social_process_log) do |f| %>
+  <% if @social_process_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@social_process_log.errors.count, "error") %> prohibited this social_process_log from being saved:</h2>
+
+      <ul>
+      <% @social_process_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :source_social_id %><br>
+    <%= f.text_field :source_social_id %>
+  </div>
+  <div class="field">
+    <%= f.label :process_status_id %><br>
+    <%= f.text_field :process_status_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
