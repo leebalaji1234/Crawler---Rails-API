@@ -1,3 +1,4 @@
+require 'rest-client'
 class SourceSocialsController < Api::V1::BaseController
   before_action :set_source_social, only: [:show, :edit, :update, :destroy]
 
@@ -28,8 +29,29 @@ class SourceSocialsController < Api::V1::BaseController
 
     respond_to do |format|
       if @source_social.save
-        format.html { redirect_to @source_social, notice: 'Source social was successfully created.' }
-        format.json { render :show, status: :created, location: @source_social }
+         statusCode = '';
+        if(params.has_key?(:fb_like_page_id) && params.has_key?(:access_token) && params.has_key?(:fb_feed_limit))
+          # http://52.74.57.176:8080/SpringRestfulWebServicesWithJSONExample/
+           @sociallog = SocialProcessLog.new
+           @sociallog.project_id = @source_social.project_id
+           @sociallog.user_id = @source_social.project.user_id
+           @sociallog.source_social_id = @source_social.id
+           @logger_sp1 = ProcessStatus.find_by_process_status('200') 
+           @sociallog.process_status_id = @logger_sp1.id 
+           if @sociallog.save 
+            @ApiResponse =  RestClient.post "http://52.74.57.176:8080/SpringRestfulWebServicesWithJSONExample/keys/", 
+              {"lid": @sociallog.id,"sid": @source_social.id,"pid": @source_social.project_id,"uid": @source_social.project.user_id,"feed_limit": source_social_params[:fb_feed_limit],"access_token": source_social_params[:access_token],"like_page_id": source_social_params[:fb_like_page_id]}.to_json, :content_type => :json, :accept => :json
+            statusCode = @ApiResponse.code  
+          end 
+        end
+          if(statusCode == 200)
+           format.html { redirect_to @source_social, notice: 'Source social was successfully created.' }
+           format.json { render :show, status: :created, location: @source_social }
+          else
+            format.html { render :new }
+            format.json { render json: @source_social.errors, status: :unprocessable_entity }
+          end
+        
       else
         format.html { render :new }
         format.json { render json: @source_social.errors, status: :unprocessable_entity }

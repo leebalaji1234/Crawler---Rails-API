@@ -3,8 +3,15 @@ class SocialProcessLogsController  < Api::V1::BaseController
 
   # GET /social_process_logs
   # GET /social_process_logs.json
+   
   def index
-    @social_process_logs = SocialProcessLog.all
+    
+    @social_process_logs = SocialProcessLog.getstatus(params[:source_social_id])
+    if(params[:source_social_id] != '')
+     ihash = {}
+     ihash[:statuscode] = @social_process_logs
+     render json: ihash , status: :ok
+    end 
   end
 
   # GET /social_process_logs/1
