@@ -15,22 +15,24 @@ Rails.application.routes.draw do
       resources :base, only: [:index, :create, :show, :update, :destroy]
     end
   end
+
   resources :projects do
    resources :channels do
     resources :source_socials
    end
   end
+
   resources :projects do 
     resources :source_webs 
-  end
+  end 
 
-
-   resources :channels do
+  resources :channels do
     resources :source_socials
-   end
-   resources :source_socials do
-      resources :social_process_logs
-    end
+  end
+  
+  resources :source_socials do
+    resources :social_process_logs
+  end
   
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
