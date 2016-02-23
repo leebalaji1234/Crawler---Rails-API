@@ -1,3 +1,5 @@
+require 'rest-client'
+require 'net/http'
 class SourceSocialsController < Api::V1::BaseController
   before_action :set_source_social, only: [:show, :edit, :update, :destroy]
 
@@ -25,9 +27,11 @@ class SourceSocialsController < Api::V1::BaseController
   # POST /source_socials.json
   
   def create
+ 
     @source_social = SourceSocial.new(source_social_params) 
     respond_to do |format|
       if @source_social.save
+        
         format.html { redirect_to @source_social, notice: 'Source social was successfully created.' }
         format.json { render :show, status: :created, location: @source_social }
         
