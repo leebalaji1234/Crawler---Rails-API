@@ -4,9 +4,9 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+role :app, %w{deploy@52.74.156.37}
+role :web, %w{deploy@52.74.156.37}
+role :db,  %w{deploy@52.74.156.37}
 
 
 # Extended Server Syntax
@@ -15,8 +15,15 @@ role :db,  %w{deploy@example.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-
+# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server '52.74.156.37', user: 'deploy', roles: %w{web app db}
+set :user, "deploy"
+set :deploy_to, '/home/deploy/dev/btinfoactivweb_service'
+ # set :ssh_options, {
+ #   keys: %w(/home/balaji/Keys/dev1/bt-prod-dev-01.pem),
+ #   forward_agent: false,
+ #   auth_methods: %w(password)
+ # }
 
 # Custom SSH Options
 # ==================

@@ -9,6 +9,10 @@ gem 'mysql2', '~> 0.3.18'
 gem 'rest-client', '~> 1.8'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'capistrano', '~> 3.3.0'
+gem 'capistrano-bundler', '~> 1.1.2', require: false
+gem 'capistrano-rails', require: false
+# gem 'capistrano-bundler', require: false
+gem 'capistrano-rvm'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
