@@ -36,7 +36,7 @@ class SourceSocial < ActiveRecord::Base
            sociallog.process_status_id = logger_sp1.id 
            if sociallog.save 
             begin
-            @ApiResponse = RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/keys/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"feed_limit": self.fb_feed_limit,"access_token": self.access_token,"like_page_id": self.fb_like_page_id}.to_json, :content_type => :json, :accept => :json
+            @ApiResponse = RestClient.post "http://192.168.1.51:8080/product-1.0.0-BUILD-SNAPSHOT/keys/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"feed_limit": self.fb_feed_limit,"access_token": self.access_token,"like_page_id": self.fb_like_page_id}.to_json, :content_type => :json, :accept => :json
             statusCode = @ApiResponse.code
             rescue
               logger_sp2 = ProcessStatus.find_by_process_status('400') 
