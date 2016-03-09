@@ -15,7 +15,4 @@ class Api::V1::BaseController < ApplicationController
           # service ticket verification 
         end
 	end
-	
-
-	
 end

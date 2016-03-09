@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @nlp_config.language %>
+</p>
+
+<p>
+  <strong>Lod:</strong>
+  <%= @nlp_config.lod %>
+</p>
+
+<p>
+  <strong>General annotations:</strong>
+  <%= @nlp_config.general_annotations %>
+</p>
+
+<p>
+  <strong>Entities extract:</strong>
+  <%= @nlp_config.entities_extract %>
+</p>
+
+<p>
+  <strong>Opendata:</strong>
+  <%= @nlp_config.opendata %>
+</p>
+
+<p>
+  <strong>Spotting method:</strong>
+  <%= @nlp_config.spotting_method %>
+</p>
+
+<p>
+  <strong>Linking method:</strong>
+  <%= @nlp_config.linking_method %>
+</p>
+
+<p>
+  <strong>Disambiguation:</strong>
+  <%= @nlp_config.disambiguation %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @nlp_config.project %>
+</p>
+
+<%= link_to 'Edit', edit_nlp_config_path(@nlp_config) %> |
+<%= link_to 'Back', nlp_configs_path %>

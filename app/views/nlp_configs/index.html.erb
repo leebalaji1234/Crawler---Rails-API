@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Nlp Configs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Language</th>
+      <th>Lod</th>
+      <th>General annotations</th>
+      <th>Entities extract</th>
+      <th>Opendata</th>
+      <th>Spotting method</th>
+      <th>Linking method</th>
+      <th>Disambiguation</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nlp_configs.each do |nlp_config| %>
+      <tr>
+        <td><%= nlp_config.language %></td>
+        <td><%= nlp_config.lod %></td>
+        <td><%= nlp_config.general_annotations %></td>
+        <td><%= nlp_config.entities_extract %></td>
+        <td><%= nlp_config.opendata %></td>
+        <td><%= nlp_config.spotting_method %></td>
+        <td><%= nlp_config.linking_method %></td>
+        <td><%= nlp_config.disambiguation %></td>
+        <td><%= nlp_config.project %></td>
+        <td><%= link_to 'Show', nlp_config %></td>
+        <td><%= link_to 'Edit', edit_nlp_config_path(nlp_config) %></td>
+        <td><%= link_to 'Destroy', nlp_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nlp config', new_nlp_config_path %>

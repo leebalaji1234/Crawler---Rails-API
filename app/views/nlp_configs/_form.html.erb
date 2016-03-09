@@ -1,0 +1,53 @@
+<%= form_for(@nlp_config) do |f| %>
+  <% if @nlp_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nlp_config.errors.count, "error") %> prohibited this nlp_config from being saved:</h2>
+
+      <ul>
+      <% @nlp_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :language %><br>
+    <%= f.number_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :lod %><br>
+    <%= f.text_field :lod %>
+  </div>
+  <div class="field">
+    <%= f.label :general_annotations %><br>
+    <%= f.text_field :general_annotations %>
+  </div>
+  <div class="field">
+    <%= f.label :entities_extract %><br>
+    <%= f.text_field :entities_extract %>
+  </div>
+  <div class="field">
+    <%= f.label :opendata %><br>
+    <%= f.text_field :opendata %>
+  </div>
+  <div class="field">
+    <%= f.label :spotting_method %><br>
+    <%= f.text_field :spotting_method %>
+  </div>
+  <div class="field">
+    <%= f.label :linking_method %><br>
+    <%= f.text_field :linking_method %>
+  </div>
+  <div class="field">
+    <%= f.label :disambiguation %><br>
+    <%= f.text_field :disambiguation %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

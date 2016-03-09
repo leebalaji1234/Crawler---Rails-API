@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215051158) do
+ActiveRecord::Schema.define(version: 20160307065017) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "channel_name", limit: 255
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 20160215051158) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "nlp_configs", force: :cascade do |t|
+    t.integer  "language",            limit: 1
+    t.string   "lod",                 limit: 255
+    t.string   "general_annotations", limit: 255
+    t.string   "entities_extract",    limit: 255
+    t.string   "opendata",            limit: 255
+    t.string   "spotting_method",     limit: 255
+    t.string   "linking_method",      limit: 255
+    t.string   "disambiguation",      limit: 255
+    t.integer  "project_id",          limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "nlp_configs", ["project_id"], name: "index_nlp_configs_on_project_id", using: :btree
 
   create_table "process_statuses", force: :cascade do |t|
     t.string   "process_status", limit: 255
@@ -111,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160215051158) do
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
 
+  add_foreign_key "nlp_configs", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "social_process_logs", "process_statuses"
   add_foreign_key "social_process_logs", "projects"

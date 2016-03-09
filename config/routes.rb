@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :nlp_configs
   resources :social_process_logs
   resources :process_statuses
   resources :source_socials
@@ -24,10 +25,11 @@ Rails.application.routes.draw do
 
   resources :projects do 
     resources :source_webs 
+    resources :nlp_configs
   end 
 
   resources :channels do
-    resources :source_socials
+    resources :source_socials 
   end
   
   resources :source_socials do

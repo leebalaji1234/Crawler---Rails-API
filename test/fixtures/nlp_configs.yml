@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  language: 1
+  lod: MyString
+  general_annotations: MyString
+  entities_extract: MyString
+  opendata: MyString
+  spotting_method: MyString
+  linking_method: MyString
+  disambiguation: MyString
+  project_id: 
+
+two:
+  language: 1
+  lod: MyString
+  general_annotations: MyString
+  entities_extract: MyString
+  opendata: MyString
+  spotting_method: MyString
+  linking_method: MyString
+  disambiguation: MyString
+  project_id: 
