@@ -4,7 +4,7 @@ lock '3.3.5'
 # require 'capistrano/bundler'
 
 set :application, 'btinfoactivweb_service'
-set :repo_url, 'http://54.169.59.80/anantha/btinfoactivweb_service.git'
+set :repo_url, 'git@54.169.59.80:anantha/btinfoactivweb_service.git'
 set :branch, :master
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -18,8 +18,8 @@ set :branch, :master
 
 # set :scm_username, "balaji"
 # set :scm_passphrase, "Welcome1015"
-set :git_http_username, 'balaji'
-set :git_http_password, 'Welcome1015'
+# set :git_http_username, 'balaji'
+# set :git_http_password, 'Welcome1015'
 set :use_sudo, false
 set :rails_env, "development"
 set :deploy_via, :copy

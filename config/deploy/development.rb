@@ -18,7 +18,7 @@ role :db,  %w{deploy@52.74.156.37}
 # server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 server '52.74.156.37', user: 'deploy', roles: %w{web app db}
 set :user, "deploy"
-set :deploy_to, '/home/deploy/dev/btinfoactivweb_service'
+set :deploy_to, '/home/deploy/dropbox/btinfoactivweb_service'
  # set :ssh_options, {
  #   keys: %w(/home/balaji/Keys/dev1/bt-prod-dev-01.pem),
  #   forward_agent: false,
