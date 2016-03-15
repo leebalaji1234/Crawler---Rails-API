@@ -16,7 +16,7 @@ class Api::V1::BaseController < ApplicationController
   #       end
 			xauth = request.headers["x-auth"];
 			begin
-			@ApiResponse =  RestClient.get 'http://192.168.1.75:7777/casserviceValidate', {:params => {:ticket => xauth, 'service' => 'http://52.74.156.37/btinfoactivweb/home.html'}}
+			@ApiResponse =  RestClient.get 'http://52.74.156.37:7777/casserviceValidate', {:params => {:ticket => xauth, 'service' => 'http://52.74.156.37/btinfoactivweb/home.html'}}
 			statusCode =  JSON.parse(@ApiResponse)
 			 if statusCode["msg"]=='failure'
 			  render :json => statusCode
