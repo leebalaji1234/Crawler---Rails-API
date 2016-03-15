@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/auth' => 'users#auth' # authentication service
+
   resources :nlp_configs
   resources :social_process_logs
   resources :process_statuses

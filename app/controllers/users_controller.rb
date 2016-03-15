@@ -8,6 +8,9 @@ class UsersController < Api::V1::BaseController
     #@users = User.joins(:company)
     # raise @users.inspect
   end
+  def auth
+    render :text => "OK"
+  end
 
   # GET /users/1
   # GET /users/1.json

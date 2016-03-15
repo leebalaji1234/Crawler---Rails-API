@@ -26,7 +26,7 @@ class SourceSocial < ActiveRecord::Base
 
   def serviceApiCall
         
-        if(self.channel_id == 1) 
+        
           # http://52.74.57.176:8080/SpringRestfulWebServicesWithJSONExample/
            sociallog = SocialProcessLog.new
            sociallog.project_id = self.project_id
@@ -36,15 +36,28 @@ class SourceSocial < ActiveRecord::Base
            sociallog.process_status_id = logger_sp1.id 
            if sociallog.save 
             begin
-            @ApiResponse = RestClient.post "http://192.168.1.51:8080/product-1.0.0-BUILD-SNAPSHOT/keys/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"feed_limit": self.fb_feed_limit,"access_token": self.access_token,"like_page_id": self.fb_like_page_id}.to_json, :content_type => :json, :accept => :json
-            statusCode = @ApiResponse.code
+             if(self.channel_id == 1)  
+              # Facebook service api configuration
+              @ApiResponse = RestClient.post "http://192.168.1.51:8080/product-1.0.0-BUILD-SNAPSHOT/keys/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"feed_limit": self.fb_feed_limit,"access_token": self.access_token,"like_page_id": self.fb_like_page_id}.to_json, :content_type => :json, :accept => :json
+              statusCode = @ApiResponse.code
+             end
+             if(self.channel_id == 3)  
+              # instagram service api configuration
+              # geo - > http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/geo/
+              # geo params -> {"latitude":"1.3000","longitude":"103.8000","distance":"50000","access_token":"2690601129.1fb234f.ab46ef41c8f64652b00fb6499b7914f2","pid":"1","lid":"3","sid":"1","uid":"2"}
+              if((self.geo_lat != '' ) && (self.geo_lon != ''))
+                 RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/geo/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"latitude": self.geo_lat,"longitude": self.geo_lon,"distance":"50000","access_token": self.access_token}.to_json, :content_type => :json, :accept => :json
+              end
+              
+              statusCode = @ApiResponse.code
+             end
             rescue
               logger_sp2 = ProcessStatus.find_by_process_status('400') 
               sociallog.process_status_id = logger_sp2.id 
               sociallog.save
             end  
            end 
-        end
+        
 
   end
 

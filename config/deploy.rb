@@ -44,7 +44,13 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/ca
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
+# set :default_env, {
+#   'PATH' => "/home/deploy/.rvm/gems/ruby-2.2.0/bin:/home/deploy/.rvm/bin:$PATH",
+#   'RUBY_VERSION' => 'ruby-2.2.0',
+#   'GEM_HOME'     => '/home/deploy/.rvm/gems/ruby-2.2.0',
+#   'GEM_PATH'     => '/home/deploy/.rvm/gems/ruby-2.2.0',
+#   'BUNDLE_PATH'  => '/home/deploy/.rvm/gems/ruby-2.2.0'
+# }
 namespace :deploy do
 
   after :restart, :clear_cache do
