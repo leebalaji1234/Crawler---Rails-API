@@ -48,7 +48,11 @@ class SourceSocial < ActiveRecord::Base
               if((self.geo_lat != '' ) && (self.geo_lon != ''))
                  RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/geo/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"latitude": self.geo_lat,"longitude": self.geo_lon,"distance":"50000","access_token": self.access_token}.to_json, :content_type => :json, :accept => :json
               end
-              
+              # tag - > http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/tags/
+              #tag params ->  {"Tags":"airasia","access_token":"2206980605.1fb234f.82cd96b751324e87942cd3f84d8957ef","pid":"1","lid":"3","sid":"1","uid":"2"}
+              if((self.instagram_tags != '' ))
+                 RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/tags/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"Tags": self.instagram_tags,"access_token": self.access_token}.to_json, :content_type => :json, :accept => :json
+              end
               statusCode = @ApiResponse.code
              end
             rescue
