@@ -64,11 +64,12 @@ namespace :deploy do
 
   task :test do
   	on "balaji@192.168.1.63" do 
-  	  execute "echo extrapass | sudo -S  cp -rf /var/www/html/angular /home/balaji/ruby-trial/ui"  
+  	  execute "echo Wecome1015 | sudo -S  cp -rf /var/www/html/angular /home/balaji/ruby-trial/ui"  
     end 
       
   end 
   task :liveui do 
+    execute "echo Wecome1015 | sudo -S zip -r /var/www/html/ btinfoactivweb_local.zip  /var/www/html/ui/*"
     execute "sudo scp -i /home/balaji/Keys/dev1/bt-prod-dev-01.pem /var/www/html/ui bt-dev-01@52.74.156.37:/tmp"
     on "deploy@52.74.156.37" do 
       execute "echo deploy | sudo -S  cp -rf /var/www/html/angular /home/balaji/ruby-trial/ui"  
