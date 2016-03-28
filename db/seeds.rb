@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Channels = Channel.create([{channel_name:'Facebook'},{channel_name:'Twitter'},{channel_name:"Instagram"}])
+SchedulerTypes = SchedulerType.create([{scheduler_name:'Only Once'},{scheduler_name:'Hourly'},{scheduler_name:'Daily'},{scheduler_name:'Weekly'},{scheduler_name:'Monthly'}])

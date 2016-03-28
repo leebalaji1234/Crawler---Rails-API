@@ -3,11 +3,11 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-#
+##bigtapp@123
 default: &default
   adapter: mysql2
   username: root
-  password: bigtapp@123
+  password: root123 
   host: localhost 
 
 development:

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Source web:</strong>
+  <%= @web_process_log.source_web %>
+</p>
+
+<p>
+  <strong>Process status:</strong>
+  <%= @web_process_log.process_status %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @web_process_log.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @web_process_log.user %>
+</p>
+
+<%= link_to 'Edit', edit_web_process_log_path(@web_process_log) %> |
+<%= link_to 'Back', web_process_logs_path %>

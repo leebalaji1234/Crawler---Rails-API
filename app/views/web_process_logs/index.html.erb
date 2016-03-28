@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Web Process Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source web</th>
+      <th>Process status</th>
+      <th>Project</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @web_process_logs.each do |web_process_log| %>
+      <tr>
+        <td><%= web_process_log.source_web %></td>
+        <td><%= web_process_log.process_status %></td>
+        <td><%= web_process_log.project %></td>
+        <td><%= web_process_log.user %></td>
+        <td><%= link_to 'Show', web_process_log %></td>
+        <td><%= link_to 'Edit', edit_web_process_log_path(web_process_log) %></td>
+        <td><%= link_to 'Destroy', web_process_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Web process log', new_web_process_log_path %>

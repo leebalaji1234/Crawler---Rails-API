@@ -74,6 +74,6 @@ class SourceSocialsController < Api::V1::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_social_params
-      params.require(:source_social).permit(:collection_name, :fb_like_page_id, :access_token, :fb_feed_limit, :consumer_key, :consumer_secret, :access_secret, :geo_lat, :geo_lon, :twitter_hastags, :instagram_start_time, :instagram_end_time, :instagram_tags, :project_id, :channel_id)
+      params.require(:source_social).permit(:collection_name, :fb_like_page_id, :access_token, :fb_feed_limit, :consumer_key, :consumer_secret, :access_secret, :geo_lat, :geo_lon, :twitter_hastags, :twitter_keywords, :instagram_start_time, :instagram_end_time, :instagram_tags, :project_id, :channel_id)
     end
 end

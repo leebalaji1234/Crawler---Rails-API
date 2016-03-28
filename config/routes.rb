@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :web_process_logs
   get 'users/auth' => 'users#auth' # authentication service
 
   resources :nlp_configs
