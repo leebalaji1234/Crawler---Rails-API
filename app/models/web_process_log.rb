@@ -5,14 +5,14 @@ class WebProcessLog < ActiveRecord::Base
   belongs_to :user
 
 
-  def self.getstatus(source_social_id)
-  	if source_social_id.present?
-      stack = self.find_by_source_social_id(source_social_id) 
-    if stack.blank?
-      "100"
-    else  
-      @stackMsg = ProcessStatus.find(stack.process_status_id).process_status
-    end
+  def self.getstatus(source_web_id)
+  	if source_web_id.present?
+      stack = self.find_by_source_web_id(source_web_id) 
+      if stack.blank?
+        "100"
+      else  
+        @stackMsg = ProcessStatus.find(stack.process_status_id).process_status
+      end
     end
   end 
 end

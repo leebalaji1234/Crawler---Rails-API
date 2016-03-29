@@ -23,7 +23,7 @@ class SourceWeb < ActiveRecord::Base
        weblog = WebProcessLog.new
        weblog.project_id = self.project_id
        weblog.user_id = self.project.user_id
-       weblog.source_social_id = self.id
+       weblog.source_web_id = self.id
        logger_sp1 = ProcessStatus.find_by_process_status('100') 
        weblog.process_status_id = logger_sp1.id 
        if weblog.save
@@ -42,10 +42,9 @@ class SourceWeb < ActiveRecord::Base
            #   return false
            # end
 
-           RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/web/",{"Collectionname": self.url_collection_name+"_"+self.id+"_"+self.project_id,"inputkeywords":"Khivraj+chennai","keywordtype":"CSV","RAKE":"rakeInstance","lid": sociallog.id,"sid": self.id,"pid": self.project_id ,"uid":  self.project.user_id}.to_json, :content_type => :json, :accept => :json
+           RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/web/",{"Collectionname": self.url_collection_name,"inputkeywords":"Khivraj+chennai","keywordtype":"CSV","RAKE":"rakeInstance","lid": weblog.id,"sid": self.id,"pid": self.project_id ,"uid":  self.project.user_id}.to_json, :content_type => :json, :accept => :json
 
-        rescue
-          # raise e.inspect
+        rescue  
            # puts "service call not working propery .gigablast server may be down #{e}!"
           logger_sp2 = ProcessStatus.find_by_process_status('400') 
           weblog.process_status_id = logger_sp2.id 
