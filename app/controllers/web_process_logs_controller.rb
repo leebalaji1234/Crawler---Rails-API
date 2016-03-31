@@ -1,4 +1,4 @@
-class WebProcessLogsController < ApplicationController
+class WebProcessLogsController < Api::V1::BaseController
   before_action :set_web_process_log, only: [:show, :edit, :update, :destroy]
 
   # GET /web_process_logs
@@ -24,7 +24,13 @@ class WebProcessLogsController < ApplicationController
   # POST /web_process_logs
   # POST /web_process_logs.json
   def create
-    @web_process_log = WebProcessLog.new(web_process_log_params)
+     @changedParams = web_process_log_params
+      if @changedParams[:process_status_id]
+       @logger_sp1 = ProcessStatus.find_by_process_status(@changedParams[:process_status_id]) 
+       @changedParams[:process_status_id] =  @logger_sp1.id  
+      end  
+    @web_process_log = WebProcessLog.new(@changedParams)
+     
 
     respond_to do |format|
       if @web_process_log.save
@@ -41,7 +47,12 @@ class WebProcessLogsController < ApplicationController
   # PATCH/PUT /web_process_logs/1.json
   def update
     respond_to do |format|
-      if @web_process_log.update(web_process_log_params)
+       @changedParams = web_process_log_params
+      if @changedParams[:process_status_id]
+       @logger_sp1 = ProcessStatus.find_by_process_status(@changedParams[:process_status_id]) 
+       @changedParams[:process_status_id] =  @logger_sp1.id  
+      end   
+      if @web_process_log.update(@changedParams) 
         format.html { redirect_to @web_process_log, notice: 'Web process log was successfully updated.' }
         format.json { render :show, status: :ok, location: @web_process_log }
       else

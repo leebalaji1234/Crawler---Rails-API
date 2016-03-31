@@ -42,14 +42,14 @@ class SourceSocial < ActiveRecord::Base
               @ApiResponse = RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/keys/",{"lid": sociallog.id,"sid": self.id,"pid": self.project_id,"uid": self.project.user_id,"feed_limit": self.fb_feed_limit,"access_token": self.access_token,"like_page_id": self.fb_like_page_id}.to_json, :content_type => :json, :accept => :json
               statusCode = @ApiResponse.code
              end
-             if(self.channel_id == 2) 
-              if((self.geo_lat.present?) && (self.geo_lon.present?))
-                 RestClient.post "http://192.168.1.108:8080/product-1.0.0-BUILD-SNAPSHOT/twitter/",{"lid": sociallog.id.to_s,"sid": self.id.to_s,"pid": self.project_id.to_s,"uid": self.project.user_id.to_s,"AccessToken": self.access_token,"ConsumerKey": self.consumer_key,"ConsumerSecret": self.consumer_secret,"AccessTokenSecret": self.access_secret,"Latitude": self.geo_lat,"Longitude": self.geo_lon,"keywords": self.twitter_keywords}.to_json, :content_type => :json, :accept => :json
+             if(self.channel_id == 2)
+                if((self.geo_lat.present?) && (self.geo_lon.present?))
+                   RestClient.post "http://52.74.57.176:8080/TwitterStreaming-1.0.0-BUILD-SNAPSHOT/twitter/",{"lid": sociallog.id.to_s,"sid": self.id.to_s,"pid": self.project_id.to_s,"uid": self.project.user_id.to_s,"AccessToken": self.access_token,"ConsumerKey": self.consumer_key,"ConsumerSecret": self.consumer_secret,"AccessTokenSecret": self.access_secret,"Latitude": self.geo_lat,"Longitude": self.geo_lon,"keywords": self.twitter_keywords}.to_json, :content_type => :json, :accept => :json
+                end
+                if((self.twitter_hastags.present?))
+                     RestClient.post "http://52.74.57.176:8080/TwitterStreaming-1.0.0-BUILD-SNAPSHOT/twitter/",{"lid": sociallog.id.to_s,"sid": self.id.to_s,"pid": self.project_id.to_s,"uid": self.project.user_id.to_s,"AccessToken": self.access_token,"ConsumerKey": self.consumer_key,"ConsumerSecret": self.consumer_secret,"AccessTokenSecret": self.access_secret,"isHashTag":true,"Hash_tagName": self.twitter_hastags}.to_json, :content_type => :json, :accept => :json
+                end 
               end
-              if((self.twitter_hastags.present?))
-                 RestClient.post "http://192.168.1.108:8080/product-1.0.0-BUILD-SNAPSHOT/twitter/",{"lid": sociallog.id.to_s,"sid": self.id.to_s,"pid": self.project_id.to_s,"uid": self.project.user_id.to_s,"AccessToken": self.access_token,"ConsumerKey": self.consumer_key,"ConsumerSecret": self.consumer_secret,"AccessTokenSecret": self.access_secret,"isHashTag":true,"Hash_tagName": self.twitter_hastags}.to_json, :content_type => :json, :accept => :json
-              end 
-             end
              if(self.channel_id == 3)  
 
               # instagram service api configuration
@@ -69,7 +69,7 @@ class SourceSocial < ActiveRecord::Base
              end
             rescue 
                
-              logger_sp2 = ProcessStatus.find_by_process_status('400') 
+              logger_sp2 = ProcessStatus.find_by_process_status('200') 
               sociallog.process_status_id = logger_sp2.id 
               sociallog.save
             end  

@@ -2,6 +2,7 @@ require 'rest-client'
 class SourceWeb < ActiveRecord::Base
   belongs_to :scheduler_type
   belongs_to :project
+  has_one :web_process_log, dependent: :destroy
   after_create :serviceApiCall
   scope :websources, -> {where(project_id: project_id)}
    
@@ -28,8 +29,9 @@ class SourceWeb < ActiveRecord::Base
        weblog.process_status_id = logger_sp1.id 
        if weblog.save
            
+          # raise @collectionname.inspect 
           begin
-           # # @collectionname = "#{self.url_collection_name}_#{self.id}_#{self.project_id}"
+         @collectionname = "#{self.url_collection_name}_#{self.id}_#{self.project_id}"
            # @ApiResponse = RestClient.get "http://52.76.26.24:8000/admin/addcoll?required=1&addcoll=#{self.url_collection_name}_#{self.id}_#{self.project_id}&defaultValue=1&format=json"
            # # raise @ApiResponse.inspect
            # if @ApiResponse.resonse.statusCode == 0 && statusMsg == 'Success' 
@@ -42,11 +44,12 @@ class SourceWeb < ActiveRecord::Base
            #   return false
            # end
 
-           RestClient.post "http://52.74.57.176:8080/product-1.0.0-BUILD-SNAPSHOT/web/",{"Collectionname": self.url_collection_name,"inputkeywords":"Khivraj+chennai","keywordtype":"CSV","RAKE":"rakeInstance","lid": weblog.id,"sid": self.id,"pid": self.project_id ,"uid":  self.project.user_id}.to_json, :content_type => :json, :accept => :json
+           RestClient.post "http://192.168.1.53:8080/product-1.0.0-BUILD-SNAPSHOT/web/",{"Collectionname": @collectionname,"inputkeywords":"Khivraj+chennai","keywordtype":"CSV","RAKE":"rakeInstance","lid": weblog.id,"sid": self.id,"pid": self.project_id ,"uid":  self.project.user_id}.to_json, :content_type => :json, :accept => :json
 
-        rescue  
+        rescue => e
+        # raise e.inspect  
            # puts "service call not working propery .gigablast server may be down #{e}!"
-          logger_sp2 = ProcessStatus.find_by_process_status('400') 
+          logger_sp2 = ProcessStatus.find_by_process_status('200') 
           weblog.process_status_id = logger_sp2.id 
           weblog.save
         end 
