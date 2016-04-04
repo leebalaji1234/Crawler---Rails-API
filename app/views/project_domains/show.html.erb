@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @project_domain.domain_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_domain.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_domain.user %>
+</p>
+
+<%= link_to 'Edit', edit_project_domain_path(@project_domain) %> |
+<%= link_to 'Back', project_domains_path %>

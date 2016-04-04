@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ontology:</strong>
+  <%= @project_ontology.ontology_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_ontology.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_ontology.user %>
+</p>
+
+<%= link_to 'Edit', edit_project_ontology_path(@project_ontology) %> |
+<%= link_to 'Back', project_ontologies_path %>

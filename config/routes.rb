@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :ontologies
+  resources :domains
+  resources :project_ontologies
+  resources :project_domains
   get 'users/auth' => 'users#auth' # authentication service
   resources :web_process_logs
   resources :nlp_configs
@@ -29,6 +33,8 @@ Rails.application.routes.draw do
   resources :projects do 
     resources :source_webs 
     resources :nlp_configs
+    resources :project_domains
+    resources :project_ontologies
   end 
 
   resources :channels do

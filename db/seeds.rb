@@ -8,3 +8,5 @@
 
 Channels = Channel.create([{channel_name:'Facebook'},{channel_name:'Twitter'},{channel_name:"Instagram"}])
 SchedulerTypes = SchedulerType.create([{scheduler_name:'Only Once'},{scheduler_name:'Hourly'},{scheduler_name:'Daily'},{scheduler_name:'Weekly'},{scheduler_name:'Monthly'}])
+Domains = Domain.create([{name:'Bank'},{name:'Retail'},{name:'Travels'}])
+Ontologies = Ontology.create([{domain_id:1,name:'Vehicle selling',url:'http://localhost/vsop.owl'},{domain_id:2,name:'Vehicle selling1',url:'http://localhost/vsop.owl'},{domain_id:3,name:'Vehicle selling2',url:'http://localhost/vsop.owl'}])

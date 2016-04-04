@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ontology.name %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @ontology.url %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @ontology.domain %>
+</p>
+
+<%= link_to 'Edit', edit_ontology_path(@ontology) %> |
+<%= link_to 'Back', ontologies_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Ontologies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ontology</th>
+      <th>Project</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_ontologies.each do |project_ontology| %>
+      <tr>
+        <td><%= project_ontology.ontology_id %></td>
+        <td><%= project_ontology.project %></td>
+        <td><%= project_ontology.user %></td>
+        <td><%= link_to 'Show', project_ontology %></td>
+        <td><%= link_to 'Edit', edit_project_ontology_path(project_ontology) %></td>
+        <td><%= link_to 'Destroy', project_ontology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project ontology', new_project_ontology_path %>

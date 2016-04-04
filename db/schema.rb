@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328060418) do
+ActiveRecord::Schema.define(version: 20160404115821) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "channel_name", limit: 255
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 20160328060418) do
     t.string   "description",  limit: 1000
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "nlp_configs", force: :cascade do |t|
@@ -42,11 +48,44 @@ ActiveRecord::Schema.define(version: 20160328060418) do
 
   add_index "nlp_configs", ["project_id"], name: "index_nlp_configs_on_project_id", using: :btree
 
+  create_table "ontologies", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "url",        limit: 255
+    t.integer  "domain_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "ontologies", ["domain_id"], name: "index_ontologies_on_domain_id", using: :btree
+
   create_table "process_statuses", force: :cascade do |t|
     t.string   "process_status", limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "project_domains", force: :cascade do |t|
+    t.string   "domain_id",  limit: 255
+    t.integer  "project_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "project_domains", ["project_id"], name: "index_project_domains_on_project_id", using: :btree
+  add_index "project_domains", ["user_id"], name: "index_project_domains_on_user_id", using: :btree
+
+  create_table "project_ontologies", force: :cascade do |t|
+    t.string   "ontology_id", limit: 255
+    t.integer  "project_id",  limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "taxonomies",  limit: 2000
+  end
+
+  add_index "project_ontologies", ["project_id"], name: "index_project_ontologies_on_project_id", using: :btree
+  add_index "project_ontologies", ["user_id"], name: "index_project_ontologies_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "project_name",        limit: 255
@@ -143,6 +182,11 @@ ActiveRecord::Schema.define(version: 20160328060418) do
   add_index "web_process_logs", ["user_id"], name: "index_web_process_logs_on_user_id", using: :btree
 
   add_foreign_key "nlp_configs", "projects"
+  add_foreign_key "ontologies", "domains"
+  add_foreign_key "project_domains", "projects"
+  add_foreign_key "project_domains", "users"
+  add_foreign_key "project_ontologies", "projects"
+  add_foreign_key "project_ontologies", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "social_process_logs", "process_statuses"
   add_foreign_key "social_process_logs", "projects"
